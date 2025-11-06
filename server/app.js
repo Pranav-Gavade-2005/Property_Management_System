@@ -9,6 +9,9 @@ import authRoutes from './routes/auth.js';
 import adminRoutes from './routes/admin.js';
 import propertyRoutes from './routes/properties.js';
 import tenantRoutes from './routes/tenant.js';
+import propertyApplicationRoutes from './routes/propertyApplications.js';
+import maintenanceRoutes from './routes/maintenance.js';
+import uploadRoutes from './routes/upload.js';
 
 dotenv.config();
 
@@ -49,10 +52,16 @@ app.get('/', (req, res) => {
   res.json({ ok: true });
 });
 
+// Serve static files from uploads directory
+app.use('/uploads', express.static('uploads'));
+
 app.use('/auth', authRoutes);
 app.use('/admin', adminRoutes);
 app.use('/properties', propertyRoutes);
 app.use('/tenant', tenantRoutes);
+app.use('/property-applications', propertyApplicationRoutes);
+app.use('/maintenance', maintenanceRoutes);
+app.use('/upload', uploadRoutes);
 
 app.use((err, req, res, next) => {
   console.error(err);
