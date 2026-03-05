@@ -208,7 +208,7 @@ function PropertyApplications() {
                   </div>
                   <p className="text-gray-600 mb-2">{application.address}</p>
                   <p className="text-lg font-medium text-blue-600">
-                    ${application.rent}/month
+                    ₹{application.rent}/month
                   </p>
                 </div>
                 <div className="flex items-center space-x-3">
@@ -244,7 +244,7 @@ function PropertyApplications() {
                     <h4 className="font-medium text-gray-900 mb-2">Application Details</h4>
                     {application.monthly_income && (
                       <p className="text-gray-600">
-                        <strong>Monthly Income:</strong> ${application.monthly_income}
+                        <strong>Monthly Income:</strong> ₹{application.monthly_income}
                       </p>
                     )}
                   </div>

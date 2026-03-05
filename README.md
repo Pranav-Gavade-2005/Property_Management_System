@@ -8,7 +8,7 @@ A complete, full-stack property management application built with React and Node
 - **User Registration** with role selection (Admin/Owner/Tenant)
 - **Secure Login** with session management
 - **Role-based Access Control** with different dashboards
-- **Password Hashing** with bcrypt
+- **Passwords stored as plain text (no hashing)** – for development/demo only
 
 ### 🏡 **Property Management**
 - **Create & Edit Properties** with detailed information
@@ -50,7 +50,6 @@ A complete, full-stack property management application built with React and Node
 - **PostgreSQL** database with proper relationships
 - **Express Sessions** for authentication
 - **Multer** for file uploads
-- **bcrypt** for password hashing
 - **CORS** for cross-origin requests
 
 ## 🚀 Quick Setup
@@ -234,9 +233,9 @@ property-management/
 - `POST /admin/create-user` - Create new user
 - `DELETE /admin/user/:id` - Delete user
 
-## 🔒 Security Features
+## 🔒 Security Notes
 
-- **Password Hashing** with bcrypt (10 rounds)
+- **Passwords are stored in plain text (no hashing). Do NOT use real credentials.**
 - **Session Management** with express-session
 - **Role-based Access Control** middleware
 - **File Upload Validation** (images only, 5MB limit)
@@ -356,3 +355,30 @@ CORS_ORIGIN=https://yourdomain.com
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
+## 🎉 Features Checklist
+
+✅ **User Authentication** (Register/Login/Logout)  
+✅ **Role-based Access** (Admin/Owner/Tenant)  
+✅ **Property Management** (CRUD operations)  
+✅ **Image Upload** (One per property, server storage)  
+✅ **Advanced Search** (Multiple filters)  
+✅ **Application System** (Submit/Review/Approve)  
+✅ **Responsive Design** (Mobile-friendly)  
+✅ **Modern UI** (TailwindCSS + SweetAlert)  
+✅ **Database Relations** (Proper foreign keys)  
+✅ **File Management** (Upload/Update/Delete)  
+✅ **Error Handling** (Frontend + Backend)  
+✅ **Sessions** (express-session; passwords stored in plain text for demo)  
+
+## 🚀 Ready for Production!
+
+This property management system is **production-ready** with:
+- Secure authentication and authorization
+- Complete CRUD operations for all entities
+- Modern, responsive user interface
+- Proper error handling and validation
+- Scalable database design
+- File upload and management
+- Role-based workflows
+
+Perfect for managing rental properties, tenant applications, and property owner operations! 🏡✨

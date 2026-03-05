@@ -51,11 +51,11 @@ CREATE TABLE property_applications (
   UNIQUE(property_id, tenant_id)
 );
 
--- Add foreign key constraint for assigned_property after properties table is created
+-- Adding foreign key constraint for assigned_property after properties table is created
 ALTER TABLE users ADD CONSTRAINT fk_users_assigned_property 
   FOREIGN KEY (assigned_property) REFERENCES properties(id) ON DELETE SET NULL;
 
--- Create indexes for better performance
+-- Creating indexes for better performance
 CREATE INDEX idx_properties_owner_id ON properties(owner_id);
 CREATE INDEX idx_properties_status ON properties(status);
 CREATE INDEX idx_properties_tenant_id ON properties(tenant_id);

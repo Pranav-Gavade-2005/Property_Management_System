@@ -251,7 +251,7 @@ export default function OwnerDashboard() {
               <DollarSign className="h-8 w-8 text-yellow-600" />
               <div className="ml-4">
                 <p className="text-sm font-medium text-gray-600">Total Monthly Rent</p>
-                <p className="text-2xl font-bold text-gray-900">${stats.totalRent.toLocaleString()}</p>
+                <p className="text-2xl font-bold text-gray-900">₹{stats.totalRent.toLocaleString()}</p>
               </div>
             </div>
           </div>
@@ -375,7 +375,7 @@ export default function OwnerDashboard() {
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="text-sm font-medium text-gray-900">
-                        ${property.rent}/month
+                        ₹{property.rent}/month
                       </div>
                       {property.rent_paid !== null && (
                         <div className="text-sm text-gray-500">

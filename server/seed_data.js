@@ -3,8 +3,7 @@
 // Complete seed script for development and testing
 // ========================================
 
-import pool from './server/db.js';
-import bcrypt from 'bcrypt';
+import pool from './db.js';
 
 async function seedDatabase() {
   try {
@@ -20,9 +19,9 @@ async function seedDatabase() {
     await pool.query('ALTER SEQUENCE property_applications_id_seq RESTART WITH 1');
     console.log('✅ Existing data cleared\n');
 
-    // Hash password for all users
-    const hashedPassword = await bcrypt.hash('password123', 10);
-    console.log('🔐 Password hashed for all users\n');
+    // Use plain-text password for all users (no hashing)
+    const plainPassword = 'password123';
+    console.log('🔐 Using plain-text password for all users\n');
 
     // ========================================
     // CREATE USERS
@@ -34,7 +33,7 @@ async function seedDatabase() {
       INSERT INTO users (name, email, password, role, phone) 
       VALUES ($1, $2, $3, $4, $5) 
       RETURNING id, name, email, role
-    `, ['Admin User', 'admin@example.com', hashedPassword, 'admin', '555-0001']);
+    `, ['Admin User', 'admin@example.com', plainPassword, 'admin', '555-0001']);
     console.log(`   ✅ Admin: ${adminResult.rows[0].name} (${adminResult.rows[0].email})`);
 
     // Property owners
@@ -42,14 +41,14 @@ async function seedDatabase() {
       INSERT INTO users (name, email, password, role, phone) 
       VALUES ($1, $2, $3, $4, $5) 
       RETURNING id, name, email, role
-    `, ['John Smith', 'owner@example.com', hashedPassword, 'owner', '555-0002']);
+    `, ['John Smith', 'owner@example.com', plainPassword, 'owner', '555-0002']);
     console.log(`   ✅ Owner: ${owner1Result.rows[0].name} (${owner1Result.rows[0].email})`);
 
     const owner2Result = await pool.query(`
       INSERT INTO users (name, email, password, role, phone) 
       VALUES ($1, $2, $3, $4, $5) 
       RETURNING id, name, email, role
-    `, ['Sarah Johnson', 'sarah.owner@example.com', hashedPassword, 'owner', '555-0003']);
+    `, ['Sarah Johnson', 'sarah.owner@example.com', plainPassword, 'owner', '555-0003']);
     console.log(`   ✅ Owner: ${owner2Result.rows[0].name} (${owner2Result.rows[0].email})`);
 
     // Tenants
@@ -57,21 +56,21 @@ async function seedDatabase() {
       INSERT INTO users (name, email, password, role, phone) 
       VALUES ($1, $2, $3, $4, $5) 
       RETURNING id, name, email, role
-    `, ['Jane Doe', 'tenant@example.com', hashedPassword, 'tenant', '555-0004']);
+    `, ['Jane Doe', 'tenant@example.com', plainPassword, 'tenant', '555-0004']);
     console.log(`   ✅ Tenant: ${tenant1Result.rows[0].name} (${tenant1Result.rows[0].email})`);
 
     const tenant2Result = await pool.query(`
       INSERT INTO users (name, email, password, role, phone) 
       VALUES ($1, $2, $3, $4, $5) 
       RETURNING id, name, email, role
-    `, ['Mike Wilson', 'mike.tenant@example.com', hashedPassword, 'tenant', '555-0005']);
+    `, ['Mike Wilson', 'mike.tenant@example.com', plainPassword, 'tenant', '555-0005']);
     console.log(`   ✅ Tenant: ${tenant2Result.rows[0].name} (${tenant2Result.rows[0].email})`);
 
     const tenant3Result = await pool.query(`
       INSERT INTO users (name, email, password, role, phone) 
       VALUES ($1, $2, $3, $4, $5) 
       RETURNING id, name, email, role
-    `, ['Emily Davis', 'emily.tenant@example.com', hashedPassword, 'tenant', '555-0006']);
+    `, ['Emily Davis', 'emily.tenant@example.com', plainPassword, 'tenant', '555-0006']);
     console.log(`   ✅ Tenant: ${tenant3Result.rows[0].name} (${tenant3Result.rows[0].email})`);
 
     const owner1Id = owner1Result.rows[0].id;
@@ -150,7 +149,7 @@ async function seedDatabase() {
         address: '987 Modern Way, New Development, City 12350',
         rent: 1900.00,
         bedrooms: 3,
-        bathrooms: 2.5,
+        bathrooms: 2,
         property_type: 'townhouse',
         status: 'maintenance'
       },

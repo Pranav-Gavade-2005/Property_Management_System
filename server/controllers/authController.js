@@ -1,4 +1,3 @@
-import bcrypt from 'bcrypt';
 import { getUserByEmail, getUserById, createUser } from '../models/userModel.js';
 
 export async function login(req, res) {
@@ -6,8 +5,7 @@ export async function login(req, res) {
   if (!email || !password) return res.status(400).json({ error: 'Email and password required' });
   const user = await getUserByEmail(email);
   if (!user) return res.status(401).json({ error: 'Invalid credentials' });
-  const ok = await bcrypt.compare(password, user.password);
-  if (!ok) return res.status(401).json({ error: 'Invalid credentials' });
+  if (password !== user.password) return res.status(401).json({ error: 'Invalid credentials' });
   req.session.user = { id: user.id, role: user.role, name: user.name, email: user.email };
   res.json({ user: req.session.user });
 }
@@ -38,14 +36,11 @@ export async function register(req, res) {
       return res.status(400).json({ error: 'User with this email already exists' });
     }
     
-    // Hash password
-    const hashedPassword = await bcrypt.hash(password, 10);
-    
-    // Create user
+    // Create user with plain-text password (no hashing)
     const user = await createUser({
       name,
       email,
-      password: hashedPassword,
+      password,
       role,
       phone: phone || null
     });

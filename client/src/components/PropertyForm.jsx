@@ -191,7 +191,7 @@ function PropertyForm({ onSubmit, initialData = null, submitLabel = "Create Prop
         {/* Financial Information */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
-            Monthly Rent ($) *
+            Monthly Rent (₹) *
           </label>
           <input
             type="number"
@@ -208,7 +208,7 @@ function PropertyForm({ onSubmit, initialData = null, submitLabel = "Create Prop
 
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
-            Security Deposit ($)
+            Security Deposit (₹)
           </label>
           <input
             type="number"

@@ -122,7 +122,7 @@ function SimplePropertyForm({ onSubmit, initialData = null, submitLabel = "Creat
         {/* Financial Information */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
-            Monthly Rent ($) *
+            Monthly Rent (₹) *
           </label>
           <input
             type="number"
